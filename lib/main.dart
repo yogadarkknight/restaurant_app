@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/detail_page.dart';
 import 'package:restaurant_app/restaurantList.dart';
 
 void main() {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       initialRoute: RestaurantListPage.routeName,
       routes: {
         RestaurantListPage.routeName: (context) => const RestaurantListPage(),
+        RestaurantDetailPage.routeName: (context) => RestaurantDetailPage(restaurant: ModalRoute.of(context)?.settings.arguments as Restaurant)
       },
     );
   }
@@ -57,6 +59,9 @@ class RestaurantListPage extends StatelessWidget {
         horizontal: 16.0,
         vertical: 8.0
       ),
+      onTap: (){
+        Navigator.pushNamed(context, RestaurantDetailPage.routeName, arguments: restaurant);
+      },
       leading: Image.network(
        restaurant.pictureId,
         width: 100,
